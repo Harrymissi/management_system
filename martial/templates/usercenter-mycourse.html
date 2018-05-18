@@ -1,0 +1,68 @@
+{% extends 'usercenter-base.html' %}
+{% block title %}My course {% endblock %}
+{% load staticfiles %}
+
+{% block custom_bread %}
+        <section>
+        <div class="wp">
+            <ul  class="crumbs">
+
+                <li><a href="">user center</a>></li>
+                <li>user course</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block right_content %}
+    <div class="right">
+		<div class="personal_des ">
+			<div class="head" style="border:1px solid #eaeaea;">
+				<h1>Class Info</h1>
+			</div>
+			<div class="inforcon">
+				<div class="left" style="width:242px;">
+                    <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
+                    <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off" method="post" action="/users/image/upload/" target='frameFile'>
+                        <label class="changearea" for="avatarUp">
+                            <span id="avatardiv" class="pic">
+                                <img width="100" height="100" class="js-img-show" id="avatarShow" src="../static/media/image/2016/12/default_big_14.png"/>
+                            </span>
+                            <span class="fl upload-inp-box" style="margin-left:70px;">
+                                <span class="button btn-green btn-w100" id="jsAvatarBtn">change imag</span>
+                                <input type="file" name="image" id="avatarUp" class="js-img-up"/>
+                            </span>
+                        </label>
+                        <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+                    </form>
+                    <div style="border-top:1px solid #eaeaea;margin-top:30px;">
+
+                    </div>
+				</div>
+				<form class="perinform" id="jsEditUserForm" autocomplete="off">
+					<ul class="right">
+						<li>Class Level ：
+                           <input type="text" name="nick_name" id="nick_name" value="{{ student.stu_class.class_level }}" maxlength="10">
+                            <i class="error-tips"></i>
+                        </li>
+						<li>Class Date ：
+                           <input type="text" id="birth_day" name="birday" value="{{ student.stu_class.class_day }}" readonly="readonly"/>
+                            <i class="error-tips"></i>
+						</li>
+
+						<li class="p_infor_city">Class Time  ：
+                            <input type="text" name="address" id="address" placeholder="from Mars" value="{{ student.stu_class.class_time }}" maxlength="10">
+						    <i class="error-tips"></i>
+                        </li>
+
+                    	</li>
+
+					</ul>
+                    <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				</form>
+                {% csrf_token %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

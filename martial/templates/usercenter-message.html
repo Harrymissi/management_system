@@ -1,0 +1,68 @@
+{% extends 'usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %} user mysuceess | martial art{% endblock %}
+
+{% block custom_bread %}
+        <section>
+        <div class="wp">
+            <ul  class="crumbs">
+
+                <li><a href="">User Center</a>></li>
+                <li>My Success</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block right_content %}
+    <div class="right" >
+		<div class="personal_des Releasecont">
+			<div class="head">
+				<h1>My Success</h1>
+			</div>
+
+		</div>
+		<div class="personal_des permessage">
+			<div class="head">
+				<ul class="tab_header messagehead">
+					<li class="active"><a href="{% url 'success' %}">Rank Record</a> </li>
+                    <li class=""><a href="{% url 'course-record' %}">Class Record</a> </li>
+				</ul>
+
+
+			</div>
+			<div class="messagelist">
+                {% for record in student_record %}
+                     <div class="messages">
+                        <div class="fr">
+                            <div class="top"><span class="fl time">{{ record.RD_date }}</span><span class="fr btn foldbtn"></span></div>
+                            <p>
+                                Congraduation !  Your new rank is {{ record.RD_color }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+			</div>
+
+
+			<div class="pageturn pagerright">
+                <ul class="pagelist">
+
+
+
+
+
+                            <li class="active"><a href="?page=1">1</a></li>
+
+
+
+
+
+            </ul>
+            </div>
+		</div>
+
+	</div>
+{% endblock %}
+

@@ -1,0 +1,66 @@
+{% extends 'usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %} user finance | martial art{% endblock %}
+
+{% block custom_bread %}
+        <section>
+        <div class="wp">
+            <ul  class="crumbs">
+
+                <li><a href="">User Center</a>></li>
+                <li>Financial Matter</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block right_content %}
+    <div class="right" >
+		<div class="personal_des Releasecont">
+			<div class="head">
+				<h1>Financial Matters</h1>
+			</div>
+
+		</div>
+		<div class="personal_des permessage">
+			<div class="head">
+				<ul class="tab_header messagehead">
+					<li class="active"><a href="{% url 'finance' %}">Transaction Record</a> </li>
+                    <li class=""><a href="{% url 'pay' %}">Check Out</a> </li>
+				</ul>
+
+
+			</div>
+			<div class="messagelist">
+                {% for student1 in student %}
+                     <div class="messages">
+                        <div class="fr">
+                            <div class="top"><span class="fl time">{{ student1.tr_date }}</span><span class="fr btn foldbtn"></span></div>
+                            <p>
+                                Transaction Amount:{{ student1.tr_amount }} &nbsp;&nbsp;&nbsp; Trasaction Type: {{ student1.tr_type }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+			</div>
+
+
+			<div class="pageturn pagerright">
+                <ul class="pagelist">
+
+
+
+
+
+                            <li class="active"><a href="?page=1">1</a></li>
+
+
+
+            </ul>
+            </div>
+		</div>
+
+	</div>
+{% endblock %}
+

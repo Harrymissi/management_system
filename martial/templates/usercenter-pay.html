@@ -1,0 +1,131 @@
+{% extends 'usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %} user finance | martial art{% endblock %}
+
+{% block custom_bread %}
+        <section>
+        <div class="wp">
+            <ul  class="crumbs">
+
+                <li><a href="">User Center</a>></li>
+                <li>Financial Matter</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block right_content %}
+    <div class="right" >
+		<div class="personal_des Releasecont">
+			<div class="head">
+				<h1>Financial Matters</h1>
+			</div>
+
+		</div>
+		<div class="personal_des permessage">
+			<div class="head">
+				<ul class="tab_header messagehead">
+					<li class=""><a href="{% url 'finance' %}">Transaction Record</a> </li>
+                    <li class="active"><a href="{% url 'pay' %}">Check Out</a> </li>
+				</ul>
+
+
+			</div>
+
+            <form name = "form1" method="post">
+                <div class="messagelist">
+
+                     <div class="messages">
+
+                         Type: &nbsp;&nbsp;&nbsp;
+                         <select   name="type1" id="type1"   onchange="bling()">
+                                <option   value="">Please Select Type</option>
+                                <option   value="product">Products</option>
+                                <option   value="membership">Membership</option>
+                                <option   value="test">Test</option>
+                         </select>
+                            &nbsp;&nbsp;&nbsp;
+                         <select   name="type2" id="type2" hidden="" onclick="bling2()">
+                             <option   value="">Please Select Level</option>
+                             <option   value="beginner">Beginner</option>
+                             <option   value="intermediate">Intermediate</option>
+                             <option   value="advanced">Advaced</option>
+                         </select>
+                         <br><br>
+                         Amount: &nbsp;&nbsp;&nbsp;
+                         <input name="amount" id="amount" value="" type="text"> </input>
+                         <br><br>
+                         <input class="btn btn-green" id="jsEmailRegBtn" type="submit" value="Place Order" />
+                    </div>
+
+
+			</div>
+                {% csrf_token %}
+            </form>
+
+
+
+            <script   language=javascript async="true">
+                function bling() {
+                    var e = document.form1.type1;
+                    var q = document.form1.type2;
+                    var money = document.getElementById("amount");
+
+                    if (e.value == "membership"){
+                        q.removeAttribute("hidden");
+                    }
+
+                    else if(e.value == "product")
+
+                        money.value = 100;
+                    else if (e.value == "test")
+
+                        money.value = 50;
+                    else
+                        money.value = 0
+                }
+
+                function bling2() {
+                    var q = document.form1.type2;
+                    var money = document.getElementById("amount");
+
+                    if(q.value == "beginner")
+
+                        money.value = 300;
+                    else if (q.value == "intermediate")
+
+                        money.value = 600;
+                    else if (q.value == "advaced")
+
+                        money.value = 100;
+                    else
+                        money.value = 0;
+                }
+
+            </script>
+
+
+			<div class="pageturn pagerright">
+                <ul class="pagelist">
+
+
+
+
+
+                            <li class="active"><a href="?page=1">1</a></li>
+
+
+
+            </ul>
+            </div>
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/validateDialog.js' %}"  type="text/javascript"></script>
+    <script src="{% static 'js/login.js' %}"  type="text/javascript"></script>
+{% endblock %}
